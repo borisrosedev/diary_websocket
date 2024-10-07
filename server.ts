@@ -29,6 +29,10 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
     socket.on("users", (msg) => {
-        console.log("message", msg)
+        io.emit("users", msg)
+    })
+
+    socket.on("notes", (msg) => {
+        io.emit("notes", msg)
     })
 })
