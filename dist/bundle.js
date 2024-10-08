@@ -16,17 +16,7 @@
   \*******************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst dotenv_1 = __importDefault(__webpack_require__(/*! dotenv */ \"dotenv\"));\ndotenv_1.default.config();\nconst express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\nconst socket_io_1 = __webpack_require__(/*! socket.io */ \"socket.io\");\nconst http_1 = __webpack_require__(/*! http */ \"http\");\nconst cors_1 = __importDefault(__webpack_require__(/*! cors */ \"cors\"));\nconst app = (0, express_1.default)();\napp.use((0, cors_1.default)({\n    origin: 'http://localhost:3000',\n    methods: [\"GET\", \"POST\"], // Autorise les méthodes GET et POST\n    credentials: true\n}));\nconst server = (0, http_1.createServer)(app);\nserver.listen(process.env.PORT, () => {\n    console.log(`✅ Websocket Server running at ${process.env.HOST}: ${process.env.PORT}`);\n});\nconst io = new socket_io_1.Server(server, {\n    cors: {\n        origin: \"http://localhost:3000\",\n        methods: [\"GET\", \"POST\"],\n        credentials: true\n    }\n});\nio.on(\"connection\", (socket) => {\n    socket.on(\"users\", (msg) => {\n        io.emit(\"users\", msg);\n    });\n    socket.on(\"notes\", (msg) => {\n        io.emit(\"notes\", msg);\n    });\n});\n\n\n//# sourceURL=webpack://diary_websocket/./server.ts?");
-
-/***/ }),
-
-/***/ "cors":
-/*!***********************!*\
-  !*** external "cors" ***!
-  \***********************/
-/***/ ((module) => {
-
-module.exports = require("cors");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst dotenv_1 = __importDefault(__webpack_require__(/*! dotenv */ \"dotenv\"));\ndotenv_1.default.config();\nconst express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\nconst socket_io_1 = __webpack_require__(/*! socket.io */ \"socket.io\");\nconst http_1 = __webpack_require__(/*! http */ \"http\");\nconst app = (0, express_1.default)();\nconst server = (0, http_1.createServer)(app);\nserver.listen(process.env.PORT, () => {\n    console.log(`✅ Websocket Server running at ${process.env.HOST}: ${process.env.PORT}`);\n});\nconst io = new socket_io_1.Server(server, {\n    cors: {\n        origin: \"http://localhost:3000\",\n        methods: [\"GET\", \"POST\"],\n        credentials: true\n    }\n});\nio.on(\"connection\", (socket) => {\n    socket.on(\"users\", (msg) => {\n        io.emit(\"users\", msg);\n    });\n    socket.on(\"notes\", (msg) => {\n        io.emit(\"notes\", msg);\n    });\n});\n\n\n//# sourceURL=webpack://diary_websocket/./server.ts?");
 
 /***/ }),
 
